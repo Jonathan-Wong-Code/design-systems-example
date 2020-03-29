@@ -1,0 +1,27 @@
+import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
+import { SignUpModal } from "./Modal";
+import { action } from "@storybook/addon-actions";
+import { withKnobs, boolean } from "@storybook/addon-knobs";
+
+<Meta title="Design System|Modals" component={SignUpModal} />
+
+# SignUpModal
+
+The Modal is used to display information to the user.
+
+## Usage
+
+Can be opened and closed to display information.
+
+## Modal
+
+The Modal opens and closes as need. This one features an image and user sign up flow.
+
+<Preview withToolbar>
+  <Story name="primary">
+    <SignUpModal
+      showModal={boolean("ShowModal", false)}
+      setShowModal={() => boolean("ShowModal", true)}
+    />
+  </Story>
+</Preview>

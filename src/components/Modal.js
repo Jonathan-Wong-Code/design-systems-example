@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import React from "react";
+import { useSpring, animated } from "react-spring";
 import { typeScale } from "../utils";
 import { PrimaryButton } from "./Buttons";
 
@@ -35,13 +36,24 @@ const CloseModalButton = styled.button`
   padding: 8px;
 `;
 
-export const SignUpModal = () => {
+export const SignUpModal = ({ showModal, setShowModal }) => {
+  const animation = useSpring({
+    opacity: showModal ? 1 : 0,
+    transform: showModal ? `translateY(0)` : `translateY(-30%)`
+  });
   return (
-    <ModalWrapper>
-      <SignUpHeader>Sign Up</SignUpHeader>
-      <SignUpText>Sign up today to get access!</SignUpText>
-      <PrimaryButton>Sign up</PrimaryButton>
-      <CloseModalButton aria-label="close modal">Close</CloseModalButton>
-    </ModalWrapper>
+    <animated.div style={animation}>
+      <ModalWrapper>
+        <SignUpHeader>Sign Up</SignUpHeader>
+        <SignUpText>Sign up today to get access!</SignUpText>
+        <PrimaryButton>Sign up</PrimaryButton>
+        <CloseModalButton
+          aria-label="close modal"
+          onClick={() => setShowModal(false)}
+        >
+          Close
+        </CloseModalButton>
+      </ModalWrapper>
+    </animated.div>
   );
 };
